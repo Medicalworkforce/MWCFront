@@ -92,7 +92,7 @@
         async function saveAll() {
             for (const c of candidateData) {
                 if (!c.zustand) continue;
-                await fetch('https://mwcback-production.up.railway.app/save-attendance', {
+                await fetch('https://mwcback-production-8248.up.railway.app/save-attendance', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
