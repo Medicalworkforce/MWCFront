@@ -61,7 +61,7 @@
             const tableBody = document.querySelector('#candidateTable tbody');
 
             if (response.ok && data.candidates.length > 0) {
-                candidateData = data.candidates.map(c => ({ ...c, zustand: null }));
+                candidateData = data.candidates.map(c => ({ ...c, zustand: null, stunden: null }));
 
                 data.candidates.forEach((c, index) => {
                     const row = document.createElement('tr');
