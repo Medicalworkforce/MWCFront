@@ -72,6 +72,9 @@
                             <button class="present" type="button" onclick="setStatus(${index}, 'Anwesend')">Anwesend</button>
                             <button class="absent" type="button" onclick="setStatus(${index}, 'Abwesend')">Abwesend</button>
                         </td>
+                        <td>
+                            <input type="number" min="0" step="0.5" class="stundenInput" data-index="${index}" placeholder="z. B. 2" />
+                        </td>
                     `;
                     tableBody.appendChild(row);
                 });
@@ -92,23 +95,38 @@
         }
 
         async function saveAll() {
-            for (const c of candidateData) {
-                if (!c.zustand) continue;
-                await fetch('https://mwcback-production-8248.up.railway.app/save-attendance', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        lehrer: username,
-                        datum: today,
-                        zustand: c.zustand,
-                        vorname: c.vorname,
-                        nachname: c.nachname,
-                        gruppe: group
-                    })
-                });
-            }
-            window.location.href = 'success.html';
+    const stundenInputs = document.querySelectorAll('.stundenInput');
+
+    stundenInputs.forEach(input => {
+        const index = input.dataset.index;
+        const value = parseFloat(input.value);
+        if (!isNaN(value)) {
+            candidateData[index].stunden = value;
         }
+    });
+
+    for (const c of candidateData) {
+        if (!c.zustand || !c.stunden) continue;
+
+        await fetch('https://mwcback-production-8248.up.railway.app/save-attendance', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                lehrer: username,
+                datum: today,
+                zustand: c.zustand,
+                vorname: c.vorname,
+                nachname: c.nachname,
+                gruppe: group,
+                kandidatId: c.kandidatId,
+                stunden: c.stunden
+            })
+        });
+    }
+
+    window.location.href = 'success.html';
+}
+
 
         loadCandidates();
     </script>
