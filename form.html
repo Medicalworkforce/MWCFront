@@ -16,11 +16,15 @@
                     <th>Vorname</th>
                     <th>Nachname</th>
                     <th>Anwesenheit</th>
-                    <th>Stunden</th>
                 </tr>
             </thead>
             <tbody></tbody>
         </table>
+        <div style="margin-top: 20px;">
+            <label for="globalStunden">Anzahl der Stunden für diese Sitzung:</label>
+            <input type="number" id="globalStunden" min="0" step="0.5" placeholder="z. B. 2" required />
+        </div>
+
         <button id="saveAll" onclick="saveAll()">Alles speichern</button>
     </div>
 
@@ -72,9 +76,6 @@
                             <button class="present" type="button" onclick="setStatus(${index}, 'Anwesend')">Anwesend</button>
                             <button class="absent" type="button" onclick="setStatus(${index}, 'Abwesend')">Abwesend</button>
                         </td>
-                        <td>
-                            <input type="number" min="0" step="0.5" class="stundenInput" data-index="${index}" placeholder="z. B. 2" />
-                        </td>
                     `;
                     tableBody.appendChild(row);
                 });
@@ -94,19 +95,15 @@
             selectedButton.classList.add('selected');
         }
 
-        async function saveAll() {
-    const stundenInputs = document.querySelectorAll('.stundenInput');
-
-    stundenInputs.forEach(input => {
-        const index = input.dataset.index;
-        const value = parseFloat(input.value);
-        if (!isNaN(value)) {
-            candidateData[index].stunden = value;
-        }
-    });
+async function saveAll() {
+    const globalStunden = parseFloat(document.getElementById('globalStunden').value);
+    if (isNaN(globalStunden) || globalStunden <= 0) {
+        alert("Bitte geben Sie eine gültige Stundenanzahl ein.");
+        return;
+    }
 
     for (const c of candidateData) {
-        if (!c.zustand || !c.stunden) continue;
+        if (!c.zustand) continue;
 
         await fetch('https://mwcback-production-8248.up.railway.app/save-attendance', {
             method: 'POST',
@@ -119,13 +116,14 @@
                 nachname: c.nachname,
                 gruppe: group,
                 kandidatId: c.kandidatId,
-                stunden: c.stunden
+                stunden: globalStunden
             })
         });
     }
 
     window.location.href = 'success.html';
 }
+
 
 
         loadCandidates();
