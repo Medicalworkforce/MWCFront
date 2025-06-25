@@ -11,7 +11,7 @@ async function submitLogin() {
     errorMsg.style.display = 'none';
 
     try {
-        const response = await fetch('https://mwcback-production.up.railway.app/authenticate', {
+        const response = await fetch('https://mwcback-production-8248.up.railway.app/authenticate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password })
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const group = localStorage.getItem('selectedGroup');
     if (!group) return;
 
-    const res = await fetch('https://mwcback-production.up.railway.app/get-candidates', {
+    const res = await fetch('https://mwcback-production-8248.up.railway.app/get-candidates', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ group })
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const username = localStorage.getItem('username');
 
     if (username) {
-        fetch('https://mwcback-production.up.railway.app/get-teacher-name', {
+        fetch('https://mwcback-production-8248.up.railway.app/get-teacher-name', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username })
@@ -119,7 +119,7 @@ async function loadCandidateData() {
     const group = localStorage.getItem('selectedGroup');
     if (!fullName || !group) return;
 
-    const res = await fetch('https://mwcback-production.up.railway.app/get-candidate-details', {
+    const res = await fetch('https://mwcback-production-8248.up.railway.app/get-candidate-details', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ fullName, group })
@@ -165,7 +165,7 @@ async function saveCurrentCandidate() {
 
     console.log("🔄 Updating fields for candidate ID", currentCandidateId, updatedFields);
 
-    const res = await fetch('https://mwcback-production.up.railway.app/update-candidate-marks', {
+    const res = await fetch('https://mwcback-production-8248.up.railway.app/update-candidate-marks', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
