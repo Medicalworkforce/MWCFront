@@ -1,5 +1,5 @@
 function goToLogin() {
-    document.getElementById('welcomeScreen').classList.add('hidden');
+    //document.getElementById('welcomeScreen').classList.add('hidden');
     document.getElementById('loginScreen').classList.remove('hidden');
 }
 
