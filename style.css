@@ -456,6 +456,17 @@ button.selected.absent {
         margin-top: 10px;
     }
 }
+/* ✅ TABLE RESPONSIVE POUR MOBILES */
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-wrapper table {
+    min-width: 600px; /* Ajustable selon le contenu */
+    width: 100%;
+}
+
 
 
 
