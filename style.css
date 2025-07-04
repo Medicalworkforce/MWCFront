@@ -386,6 +386,17 @@ button.selected.absent {
         line-height: 1.4;
     }
 }
+@media (max-width: 768px) {
+    .start-button {
+        position: static;
+        margin-top: 20px;
+        font-size: 16px;
+    }
+
+    .screen {
+        padding: 20px;
+    }
+}
 
 
 
