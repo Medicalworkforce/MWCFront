@@ -434,5 +434,30 @@ button.selected.absent {
 }
 
 
+@media (max-height: 500px) and (orientation: landscape) {
+    .screen {
+        justify-content: flex-start;
+        padding-top: 20px;
+        height: auto;
+    }
+
+    .logo {
+        width: 180px; /* Réduire un peu si besoin */
+        margin-bottom: 5px;
+    }
+
+    .welcome-image {
+        max-height: 40vh;
+        width: auto;
+    }
+
+    .start-button {
+        position: relative;
+        margin-top: 10px;
+    }
+}
+
+
+
 
 
