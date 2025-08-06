@@ -1,3 +1,4 @@
+https://medicalworkforce.github.io/MWCSchoolFront/step1.html
 function goToLogin() {
     document.getElementById('welcomeScreen').classList.add('hidden');
     document.getElementById('loginScreen').classList.remove('hidden');
@@ -202,3 +203,4 @@ async function saveAndExit() {
         window.location.href = 'success.html';
     }
 }
+
