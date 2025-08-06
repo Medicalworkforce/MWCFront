@@ -1,4 +1,14 @@
-https://medicalworkforce.github.io/MWCSchoolFront/step1.html
+// Run login protection
+(function() {
+    const currentPage = window.location.pathname.split("/").pop();
+
+    // Exclude login page itself
+    if (currentPage !== "login.html" && !localStorage.getItem("loggedInUser")) {
+        window.location.href = "login.html";
+    }
+})();
+
+
 function goToLogin() {
     document.getElementById('welcomeScreen').classList.add('hidden');
     document.getElementById('loginScreen').classList.remove('hidden');
@@ -203,4 +213,5 @@ async function saveAndExit() {
         window.location.href = 'success.html';
     }
 }
+
 
