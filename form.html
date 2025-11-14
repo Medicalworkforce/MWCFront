@@ -111,6 +111,12 @@ async function saveAll() {
     const globalStunden = parseFloat(document.getElementById('globalStunden').value);
     if (isNaN(globalStunden) || globalStunden <= 0) {
         alert("Bitte geben Sie eine gültige Stundenanzahl ein.");
+
+        // Réactiver le bouton et réinitialiser le flag
+        btn.disabled = false;
+        btn.textContent = 'Alles speichern';
+        isSaving = false;
+
         return;
     }
 
@@ -142,5 +148,6 @@ async function saveAll() {
     </script>
 </body>
 </html>
+
 
 
