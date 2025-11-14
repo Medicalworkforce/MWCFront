@@ -99,6 +99,15 @@
         }
 
 async function saveAll() {
+    // Empêcher le double-clic
+    if (isSaving) return;
+    isSaving = true;
+
+    // Désactiver le bouton et changer son texte
+    const btn = document.getElementById('saveAll');
+    btn.disabled = true;
+    btn.textContent = 'Speichern...';
+    
     const globalStunden = parseFloat(document.getElementById('globalStunden').value);
     if (isNaN(globalStunden) || globalStunden <= 0) {
         alert("Bitte geben Sie eine gültige Stundenanzahl ein.");
@@ -133,4 +142,5 @@ async function saveAll() {
     </script>
 </body>
 </html>
+
 
